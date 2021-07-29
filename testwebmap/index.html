@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1240px;
+            height: 827px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/ContiguousUS_1.js"></script>
+        <script src="data/AmericanCoalBeds_2.js"></script>
+        <script src="data/CoalMines_US_2018_3.js"></script>
+        <script src="data/BetterCarboniferousPlants_4.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[22.526760832595844,-123.02326121193416],[60.00245189023518,-66.78701208544022]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_ESRIWorldImagery_0');
+        map.getPane('pane_ESRIWorldImagery_0').style.zIndex = 400;
+        var layer_ESRIWorldImagery_0 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            pane: 'pane_ESRIWorldImagery_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 18
+        });
+        layer_ESRIWorldImagery_0;
+        map.addLayer(layer_ESRIWorldImagery_0);
+        function pop_ContiguousUS_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ContiguousUS_1_0() {
+            return {
+                pane: 'pane_ContiguousUS_1',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 3.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(152,125,183,0.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_ContiguousUS_1');
+        map.getPane('pane_ContiguousUS_1').style.zIndex = 401;
+        map.getPane('pane_ContiguousUS_1').style['mix-blend-mode'] = 'normal';
+        var layer_ContiguousUS_1 = new L.geoJson(json_ContiguousUS_1, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_ContiguousUS_1',
+            layerName: 'layer_ContiguousUS_1',
+            pane: 'pane_ContiguousUS_1',
+            onEachFeature: pop_ContiguousUS_1,
+            style: style_ContiguousUS_1_0,
+        });
+        bounds_group.addLayer(layer_ContiguousUS_1);
+        map.addLayer(layer_ContiguousUS_1);
+        function pop_AmericanCoalBeds_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_AmericanCoalBeds_2_0() {
+            return {
+                pane: 'pane_AmericanCoalBeds_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(189,44,44,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_AmericanCoalBeds_2');
+        map.getPane('pane_AmericanCoalBeds_2').style.zIndex = 402;
+        map.getPane('pane_AmericanCoalBeds_2').style['mix-blend-mode'] = 'normal';
+        var layer_AmericanCoalBeds_2 = new L.geoJson(json_AmericanCoalBeds_2, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_AmericanCoalBeds_2',
+            layerName: 'layer_AmericanCoalBeds_2',
+            pane: 'pane_AmericanCoalBeds_2',
+            onEachFeature: pop_AmericanCoalBeds_2,
+            style: style_AmericanCoalBeds_2_0,
+        });
+        bounds_group.addLayer(layer_AmericanCoalBeds_2);
+        map.addLayer(layer_AmericanCoalBeds_2);
+        function pop_CoalMines_US_2018_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['year_'] !== null ? autolinker.link(feature.properties['year_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MSHA_ID'] !== null ? autolinker.link(feature.properties['MSHA_ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['type_'] !== null ? autolinker.link(feature.properties['type_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['mstafips'] !== null ? autolinker.link(feature.properties['mstafips'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['state'] !== null ? autolinker.link(feature.properties['state'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['county'] !== null ? autolinker.link(feature.properties['county'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['mctyfips'] !== null ? autolinker.link(feature.properties['mctyfips'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(feature.properties['lat'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(feature.properties['lon'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['unit'] !== null ? autolinker.link(feature.properties['unit'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tot_prod'] !== null ? autolinker.link(feature.properties['tot_prod'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['notes'] !== null ? autolinker.link(feature.properties['notes'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CoalMines_US_2018_3_0() {
+            return {
+                pane: 'pane_CoalMines_US_2018_3',
+                shape: 'diamond',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(68,139,186,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_CoalMines_US_2018_3');
+        map.getPane('pane_CoalMines_US_2018_3').style.zIndex = 403;
+        map.getPane('pane_CoalMines_US_2018_3').style['mix-blend-mode'] = 'normal';
+        var layer_CoalMines_US_2018_3 = new L.geoJson(json_CoalMines_US_2018_3, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_CoalMines_US_2018_3',
+            layerName: 'layer_CoalMines_US_2018_3',
+            pane: 'pane_CoalMines_US_2018_3',
+            onEachFeature: pop_CoalMines_US_2018_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_CoalMines_US_2018_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_CoalMines_US_2018_3);
+        map.addLayer(layer_CoalMines_US_2018_3);
+        function pop_BetterCarboniferousPlants_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['collection_no'] !== null ? autolinker.link(feature.properties['collection_no'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">formation</th>\
+                        <td>' + (feature.properties['formation'] !== null ? autolinker.link(feature.properties['formation'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">lng</th>\
+                        <td>' + (feature.properties['lng'] !== null ? autolinker.link(feature.properties['lng'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">lat</th>\
+                        <td>' + (feature.properties['lat'] !== null ? autolinker.link(feature.properties['lat'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['collection_name'] !== null ? autolinker.link(feature.properties['collection_name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">n_occs</th>\
+                        <td>' + (feature.properties['n_occs'] !== null ? autolinker.link(feature.properties['n_occs'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['early_interval'] !== null ? autolinker.link(feature.properties['early_interval'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['late_interval'] !== null ? autolinker.link(feature.properties['late_interval'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['max_ma'] !== null ? autolinker.link(feature.properties['max_ma'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['min_ma'] !== null ? autolinker.link(feature.properties['min_ma'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['reference_no'] !== null ? autolinker.link(feature.properties['reference_no'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">state</th>\
+                        <td>' + (feature.properties['state'] !== null ? autolinker.link(feature.properties['state'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">geogcomments</th>\
+                        <td>' + (feature.properties['geogcomments'] !== null ? autolinker.link(feature.properties['geogcomments'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">environment</th>\
+                        <td>' + (feature.properties['environment'] !== null ? autolinker.link(feature.properties['environment'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_BetterCarboniferousPlants_4_0(feature) {
+            if (feature.properties['n_occs'] >= 1.000000 && feature.properties['n_occs'] <= 5.000000 ) {
+                return {
+                pane: 'pane_BetterCarboniferousPlants_4',
+                radius: 3.7999999999999994,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(177,252,0,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['n_occs'] >= 5.000000 && feature.properties['n_occs'] <= 13.000000 ) {
+                return {
+                pane: 'pane_BetterCarboniferousPlants_4',
+                radius: 6.1,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(177,252,0,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['n_occs'] >= 13.000000 && feature.properties['n_occs'] <= 25.000000 ) {
+                return {
+                pane: 'pane_BetterCarboniferousPlants_4',
+                radius: 8.399999999999999,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(177,252,0,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['n_occs'] >= 25.000000 && feature.properties['n_occs'] <= 50.000000 ) {
+                return {
+                pane: 'pane_BetterCarboniferousPlants_4',
+                radius: 10.7,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(177,252,0,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['n_occs'] >= 50.000000 && feature.properties['n_occs'] <= 90.000000 ) {
+                return {
+                pane: 'pane_BetterCarboniferousPlants_4',
+                radius: 12.999999999999998,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(177,252,0,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_BetterCarboniferousPlants_4');
+        map.getPane('pane_BetterCarboniferousPlants_4').style.zIndex = 404;
+        map.getPane('pane_BetterCarboniferousPlants_4').style['mix-blend-mode'] = 'normal';
+        var layer_BetterCarboniferousPlants_4 = new L.geoJson(json_BetterCarboniferousPlants_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_BetterCarboniferousPlants_4',
+            layerName: 'layer_BetterCarboniferousPlants_4',
+            pane: 'pane_BetterCarboniferousPlants_4',
+            onEachFeature: pop_BetterCarboniferousPlants_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_BetterCarboniferousPlants_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_BetterCarboniferousPlants_4);
+        map.addLayer(layer_BetterCarboniferousPlants_4);
+        setBounds();
+        </script>
+    </body>
+</html>
